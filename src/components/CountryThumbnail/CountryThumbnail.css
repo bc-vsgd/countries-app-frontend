@@ -1,0 +1,5 @@
+.country-thumbnail .flag {
+  width: 300px;
+  height: 200px;
+  object-fit: contains;
+}
