@@ -17,8 +17,29 @@ const HomePage = ({ url }) => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(url);
-        // console.log("app, data >>> ", data);
-        setData(data);
+        // console.log("app, data >>> ", data.data);
+        //
+        // Name ascending sort
+        const nameSortedArray = data.data.sort((a, b) => {
+          return a.name.common
+            .toLowerCase()
+            .localeCompare(b.name.common.toLowerCase());
+        });
+        // console.log("nameSortedArray >> ", nameSortedArray);
+        // setData(nameSortedArray);
+        //
+        // Population descending sort
+        // setData(
+        //   data.data.sort((a, b) => {
+        //     return b.population - a.population;
+        //   })
+        // );
+        //
+        // Area ascending sort
+        const areaSortedArray = data.data.sort((a, b) => {
+          return a.area - b.area;
+        });
+        setData(areaSortedArray);
       } catch (error) {
         console.log("App, error >>> ", error);
       }

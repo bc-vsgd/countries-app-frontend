@@ -22,7 +22,6 @@ const CountryPage = ({ url }) => {
     for (const [key, value] of Object.entries(nativeNames)) {
       natArr.push([key, value]);
     }
-    console.log("native array >> ", natArr);
     return natArr;
   };
   const getLanguages = (languages) => {
@@ -44,17 +43,15 @@ const CountryPage = ({ url }) => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`${url}/${name}`);
-        console.log("country, data >>> ", data[0]);
-        setData(data[0]);
+        console.log("country, data >>> ", data.data);
+        setData(data.data[0]);
         // Get & set languages, continents, currencies, borders
-        setNativeNames(getNativeNames(data[0].name.nativeName));
-        // console.log("native name >> ", data[0].name.nativeName);
-
-        setLanguages(getLanguages(data[0].languages));
-        setContinents(data[0].continents);
-        setCurrencies(getCurrencies(data[0].currencies));
-        if (data[0].borders) {
-          setBorders(data[0].borders);
+        setNativeNames(getNativeNames(data.data[0].name.nativeName));
+        setLanguages(getLanguages(data.data[0].languages));
+        setContinents(data.data[0].continents);
+        setCurrencies(getCurrencies(data.data[0].currencies));
+        if (data.data[0].borders) {
+          setBorders(data.data[0].borders);
         }
       } catch (error) {
         console.log("country, error >>> ", error);
@@ -68,13 +65,16 @@ const CountryPage = ({ url }) => {
     <Loading />
   ) : (
     <div className="country-page">
+      {/* Name, native name(s) */}
       <div>{data.name.common}</div>
       <div className="flex-row">
         {nativeNames.map((name, index) => {
           return <p key={index}>{name[1].common}</p>;
         })}
       </div>
+      {/* Flag */}
       <img src={data.flags.svg} className="flag" />
+      {/* Capital, population, area */}
       <p>Capital: {data.capital}</p>
       <p>
         Population: {data.population} inhabitants ({data.demonyms.eng.f})
