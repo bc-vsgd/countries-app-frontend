@@ -6,13 +6,13 @@ import HomePage from "./pages/HomePage/HomePage";
 import CountryPage from "./pages/CountryPage/CountryPage";
 
 function App() {
-  const countriesUrl = "https://countryinfoapi.com/api/countries";
+  const countriesUrl = "https://restcountries.com/v3.1";
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage url={countriesUrl} />} />
+        <Route path="/" element={<HomePage url={`${countriesUrl}/all`} />} />
         <Route
-          path="/country"
+          path="country/:name"
           element={<CountryPage url={`${countriesUrl}/name`} />}
         />
       </Routes>

@@ -3,10 +3,10 @@ import "./CountryThumbnail.css";
 const CountryThumbnail = ({ country }) => {
   return (
     <div className="country-thumbnail">
-      <div>{country.name}</div>
+      <div>{country.name.common}</div>
       <img
-        src={country.flag}
-        alt={`Drapeau ${country.name}`}
+        src={country.flags.svg}
+        alt={`Drapeau ${country.name.common}`}
         className="flag"
       />
     </div>

@@ -33,8 +33,8 @@ const HomePage = ({ url }) => {
     <div className="home-page">
       {data.map((country, index) => {
         return (
-          <Link to="/country" key={index} state={{ name: country.name }}>
-            <CountryThumbnail country={country} />;
+          <Link to={`/country/${country.name.common}`} key={index}>
+            <CountryThumbnail country={country} />
           </Link>
         );
       })}
