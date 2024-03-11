@@ -4,6 +4,7 @@ import "./App.css";
 // Pages
 import HomePage from "./pages/HomePage/HomePage";
 import CountryPage from "./pages/CountryPage/CountryPage";
+import CountrySearchPage from "./pages/CountrySearchPage/CountrySearchPage";
 
 function App() {
   // const countriesUrl = "https://restcountries.com/v3.1";
@@ -11,15 +12,20 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<HomePage url={`${countriesUrl}/all`} />} /> */}
+        {/* Home */}
         <Route
           path="/"
           element={<HomePage url={`${countriesUrl}/countries`} />}
         />
+        {/* Country by name */}
         <Route
           path="country/:name"
-          // element={<CountryPage url={`${countriesUrl}/country/:name`} />}
           element={<CountryPage url={`${countriesUrl}/country`} />}
+        />
+        {/* Country: query search */}
+        <Route
+          path="country"
+          element={<CountrySearchPage url={`${countriesUrl}/country`} />}
         />
       </Routes>
     </Router>

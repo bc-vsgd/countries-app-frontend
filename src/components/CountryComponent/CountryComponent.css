@@ -1,0 +1,15 @@
+.country-comp {
+  border: solid 1px black;
+  width: 500px;
+}
+
+.country-comp .capital {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.country-comp .flag {
+  width: 300px;
+  height: 200px;
+  object-fit: contains;
+}

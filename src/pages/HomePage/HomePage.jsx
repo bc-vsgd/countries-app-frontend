@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // Pages
 // Components
 import Loading from "../../components/Loading/Loading";
+import Header from "../../components/Header/Header";
 import CountryThumbnail from "../../components/CountryThumbnail/CountryThumbnail";
 // Style
 // import "./HomePage.css";
@@ -17,29 +18,29 @@ const HomePage = ({ url }) => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(url);
-        // console.log("app, data >>> ", data.data);
+        // console.log("app, data >>> ", data);
         //
-        // Name ascending sort
-        const nameSortedArray = data.data.sort((a, b) => {
+        // NAME ASCENDING SORT
+        const nameSortedArray = data.sort((a, b) => {
           return a.name.common
             .toLowerCase()
             .localeCompare(b.name.common.toLowerCase());
         });
         // console.log("nameSortedArray >> ", nameSortedArray);
-        // setData(nameSortedArray);
+        setData(nameSortedArray);
         //
-        // Population descending sort
+        // POPULATION DESCENDING SORT
         // setData(
-        //   data.data.sort((a, b) => {
+        //   data.sort((a, b) => {
         //     return b.population - a.population;
         //   })
         // );
         //
-        // Area ascending sort
-        const areaSortedArray = data.data.sort((a, b) => {
-          return a.area - b.area;
-        });
-        setData(areaSortedArray);
+        // AREA ASCENDING SORT
+        // const areaSortedArray = data.sort((a, b) => {
+        //   return a.area - b.area;
+        // });
+        // setData(areaSortedArray);
       } catch (error) {
         console.log("App, error >>> ", error);
       }
@@ -51,15 +52,18 @@ const HomePage = ({ url }) => {
   return isLoading ? (
     <Loading />
   ) : (
-    <div className="home-page">
-      {data.map((country, index) => {
-        return (
-          <Link to={`/country/${country.name.common}`} key={index}>
-            <CountryThumbnail country={country} />
-          </Link>
-        );
-      })}
-    </div>
+    <>
+      <Header />
+      <div className="home-page">
+        {data.map((country, index) => {
+          return (
+            <Link to={`/country/${country.name.common}`} key={index}>
+              <CountryThumbnail country={country} />
+            </Link>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
