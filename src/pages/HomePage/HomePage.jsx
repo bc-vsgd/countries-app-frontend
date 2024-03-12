@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 // Pages
 // Components
 import Loading from "../../components/Loading/Loading";
-import Header from "../../components/Header/Header";
+// import Header from "../../components/Header/Header";
+import SearchComponent from "../../components/SearchComponent/SearchComponent";
 import CountryThumbnail from "../../components/CountryThumbnail/CountryThumbnail";
 // Style
 // import "./HomePage.css";
@@ -17,17 +18,9 @@ const HomePage = ({ url }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(`${url}`);
         // console.log("app, data >>> ", data);
-        //
-        // NAME ASCENDING SORT
-        const nameSortedArray = data.sort((a, b) => {
-          return a.name.common
-            .toLowerCase()
-            .localeCompare(b.name.common.toLowerCase());
-        });
-        // console.log("nameSortedArray >> ", nameSortedArray);
-        setData(nameSortedArray);
+        setData(data);
         //
         // POPULATION DESCENDING SORT
         // setData(
@@ -53,7 +46,7 @@ const HomePage = ({ url }) => {
     <Loading />
   ) : (
     <>
-      <Header />
+      <SearchComponent />
       <div className="home-page">
         {data.map((country, index) => {
           return (

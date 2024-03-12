@@ -5,6 +5,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import CountryPage from "./pages/CountryPage/CountryPage";
 import CountrySearchPage from "./pages/CountrySearchPage/CountrySearchPage";
+import SortedPage from "./pages/SortedPage/SortedPage";
 
 function App() {
   // const countriesUrl = "https://restcountries.com/v3.1";
@@ -26,6 +27,11 @@ function App() {
         <Route
           path="country"
           element={<CountrySearchPage url={`${countriesUrl}/country`} />}
+        />
+        {/* Alphabetical sort */}
+        <Route
+          path="/countries/sort"
+          element={<SortedPage url={`${countriesUrl}/countries/sort`} />}
         />
       </Routes>
     </Router>

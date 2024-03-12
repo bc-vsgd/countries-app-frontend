@@ -3,23 +3,31 @@
 import "./CountryComponent.css";
 
 const CountryComponent = ({ data }) => {
-  //   console.log("country comp, data", data);
+  // console.log("country comp, data", data);
   // Get arrays of: native names, languages, currencies, continents, borders
   const nativeNames = [];
-  for (const [key, value] of Object.entries(data.name.nativeName)) {
-    nativeNames.push([key, value]);
+  if (data.name.nativeName) {
+    for (const [key, value] of Object.entries(data.name.nativeName)) {
+      nativeNames.push([key, value]);
+    }
   }
   const languages = [];
-  for (const [key, value] of Object.entries(data.languages)) {
-    languages.push([key, value]);
+  if (data.languages) {
+    for (const [key, value] of Object.entries(data.languages)) {
+      languages.push([key, value]);
+    }
   }
   const currencies = [];
-  for (const [key, value] of Object.entries(data.currencies)) {
-    currencies.push([key, value]);
+  if (data.currencies) {
+    for (const [key, value] of Object.entries(data.currencies)) {
+      currencies.push([key, value]);
+    }
   }
   const continents = [];
-  for (let i = 0; i < data.continents.length; i++) {
-    continents.push(data.continents[i]);
+  if (data.continents) {
+    for (let i = 0; i < data.continents.length; i++) {
+      continents.push(data.continents[i]);
+    }
   }
   const borders = [];
   if (data.borders) {
@@ -42,7 +50,7 @@ const CountryComponent = ({ data }) => {
       {/* Capital, population, area */}
       <p>Capital: {data.capital}</p>
       <p>
-        Population: {data.population} inhabitants ({data.demonyms.eng.f})
+        Population: {data.population} inhabitants ({data.demonyms?.eng.f})
       </p>
       <p>Area: {data.area} km2</p>
       {/* Language(s) */}

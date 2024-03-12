@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const SearchComponent = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -26,8 +26,25 @@ const Header = () => {
           Search
         </button>
       </div>
+      <div>
+        Name (alph)
+        <button
+          onClick={() => {
+            navigate("/countries/sort?name=asc");
+          }}
+        >
+          Asc
+        </button>
+        <button
+          onClick={() => {
+            navigate("/countries/sort?name=desc");
+          }}
+        >
+          Desc
+        </button>
+      </div>
     </header>
   );
 };
 
-export default Header;
+export default SearchComponent;
