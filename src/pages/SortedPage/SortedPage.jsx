@@ -1,3 +1,5 @@
+// RETURNS A PAGE WITH RESULTS OF SORT
+
 import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import axios from "axios";

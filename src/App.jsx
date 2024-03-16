@@ -8,7 +8,6 @@ import CountrySearchPage from "./pages/CountrySearchPage/CountrySearchPage";
 import SortedPage from "./pages/SortedPage/SortedPage";
 
 function App() {
-  // const countriesUrl = "https://restcountries.com/v3.1";
   const countriesUrl = "http://localhost:3000";
   return (
     <Router>
